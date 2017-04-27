@@ -1,0 +1,27 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
+          package="wbl.egr.uri.anear"
+>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="com.microsoft.band.service.access.BIND_BAND_SERVICE" />
+
+    <application android:allowBackup="true"
+                 android:label="@string/app_name"
+                 android:supportsRtl="true"
+                 android:name=".band.enums.AnEar"
+    >
+
+        <service
+            android:name=".band.services.BandCollectionService"
+            android:process=":band_collection_process"/>
+        <service android:name=".io.services.CsvLogService"/>
+        <service android:name=".ble.services.BleConnectionJobService"
+                 android:permission="android.permission.BIND_JOB_SERVICE"/>
+
+    </application>
+
+</manifest>
