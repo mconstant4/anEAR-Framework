@@ -42,7 +42,7 @@ public class BandBarometerListener implements BandBarometerEventListener {
                     String.valueOf(bandBarometerEvent.getAirPressure()),
                     String.valueOf(bandBarometerEvent.getTemperature())};
             String content = CsvLogService.generateContents(contents);
-            CsvLogService.logData(mContext, new File(AnEar.ROOT_FILE, "barometer.csv"), HEADER, content);
+            CsvLogService.logData(mContext, new File(AnEar.getRoot(mContext), "barometer.csv"), HEADER, content);
         }
     }
 }

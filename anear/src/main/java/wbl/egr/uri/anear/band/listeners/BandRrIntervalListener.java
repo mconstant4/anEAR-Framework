@@ -41,7 +41,7 @@ public class BandRrIntervalListener implements BandRRIntervalEventListener {
             String[] contents = {dateString, timeString,
                     String.valueOf(bandRRIntervalEvent.getInterval())};
             String content = CsvLogService.generateContents(contents);
-            CsvLogService.logData(mContext, new File(AnEar.ROOT_FILE, "rr_interval.csv"), HEADER, content);
+            CsvLogService.logData(mContext, new File(AnEar.getRoot(mContext), "rr_interval.csv"), HEADER, content);
         }
     }
 }

@@ -48,7 +48,7 @@ public class BandContactListener implements BandContactEventListener {
             String[] contents = {dateString, timeString,
                     String.valueOf(bandContactEvent.getContactState())};
             String content = CsvLogService.generateContents(contents);
-            CsvLogService.logData(mContext, new File(AnEar.ROOT_FILE, "contact.csv"), HEADER, content);
+            CsvLogService.logData(mContext, new File(AnEar.getRoot(mContext), "contact.csv"), HEADER, content);
         }
     }
 }

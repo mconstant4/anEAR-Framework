@@ -43,7 +43,7 @@ public class BandCaloriesListener implements BandCaloriesEventListener {
                 String[] contents = {dateString, timeString,
                         String.valueOf(bandCaloriesEvent.getCaloriesToday())};
                 String content = CsvLogService.generateContents(contents);
-                CsvLogService.logData(mContext, new File(AnEar.ROOT_FILE, "calories.csv"), HEADER, content);
+                CsvLogService.logData(mContext, new File(AnEar.getRoot(mContext), "calories.csv"), HEADER, content);
             } catch (InvalidBandVersionException e) {
                 e.printStackTrace();
             }

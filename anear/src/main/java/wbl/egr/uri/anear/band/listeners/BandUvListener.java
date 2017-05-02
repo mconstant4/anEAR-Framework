@@ -44,7 +44,7 @@ public class BandUvListener implements BandUVEventListener {
                         String.valueOf(bandUVEvent.getUVExposureToday()),
                         String.valueOf(bandUVEvent.getUVIndexLevel())};
                 String content = CsvLogService.generateContents(contents);
-                CsvLogService.logData(mContext, new File(AnEar.ROOT_FILE, "uv.csv"), HEADER, content);
+                CsvLogService.logData(mContext, new File(AnEar.getRoot(mContext), "uv.csv"), HEADER, content);
             } catch (InvalidBandVersionException e) {
                 e.printStackTrace();
             }

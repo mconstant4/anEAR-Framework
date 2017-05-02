@@ -51,7 +51,7 @@ public class BandAccelerometerListener implements BandAccelerometerEventListener
                     String.valueOf(bandAccelerometerEvent.getAccelerationY() * (long)9.81),
                     String.valueOf(bandAccelerometerEvent.getAccelerationZ() * (long)9.81)};
             String content = CsvLogService.generateContents(contents);
-            CsvLogService.logData(mContext, new File(AnEar.ROOT_FILE, "acceleration.csv"), HEADER, content);
+            CsvLogService.logData(mContext, new File(AnEar.getRoot(mContext), "acceleration.csv"), HEADER, content);
         }
     }
 }

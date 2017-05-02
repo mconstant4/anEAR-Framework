@@ -46,7 +46,7 @@ public class BandDistanceListener implements BandDistanceEventListener {
                         String.valueOf(bandDistanceEvent.getPace()),
                         String.valueOf(bandDistanceEvent.getSpeed())};
                 String content = CsvLogService.generateContents(contents);
-                CsvLogService.logData(mContext, new File(AnEar.ROOT_FILE, "distance.csv"), HEADER, content);
+                CsvLogService.logData(mContext, new File(AnEar.getRoot(mContext), "distance.csv"), HEADER, content);
             } catch (InvalidBandVersionException e) {
                 e.printStackTrace();
             }

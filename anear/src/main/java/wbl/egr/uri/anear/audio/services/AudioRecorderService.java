@@ -76,7 +76,7 @@ public class AudioRecorderService extends Service {
         mWakeLock = ((PowerManager) getSystemService(POWER_SERVICE) ).newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "AudioRecorderServiceWakeLock");
         mRecording = false;
         updateState(AudioState.UNINITIALIZED);
-        mTempFile = new File(AnEar.ROOT_FILE, "temp.tmp");
+        mTempFile = new File(AnEar.getRoot(this), "temp.tmp");
     }
 
     @Override

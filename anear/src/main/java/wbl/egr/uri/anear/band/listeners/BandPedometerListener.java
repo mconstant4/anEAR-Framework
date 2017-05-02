@@ -43,7 +43,7 @@ public class BandPedometerListener implements BandPedometerEventListener {
                 String[] contents = {dateString, timeString,
                         String.valueOf(bandPedometerEvent.getStepsToday())};
                 String content = CsvLogService.generateContents(contents);
-                CsvLogService.logData(mContext, new File(AnEar.ROOT_FILE, "pedometer.csv"), HEADER, content);
+                CsvLogService.logData(mContext, new File(AnEar.getRoot(mContext), "pedometer.csv"), HEADER, content);
             } catch (InvalidBandVersionException e) {
                 e.printStackTrace();
             }

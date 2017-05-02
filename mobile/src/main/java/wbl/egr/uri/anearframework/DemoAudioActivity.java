@@ -37,7 +37,7 @@ public class DemoAudioActivity extends AppCompatActivity {
         mAudioObject = new AudioObject(10000);
         mAudioObject.enablePeriodic(15000);
 
-        mWavObject = new WavObject(new File(AnEar.ROOT_FILE, "audio.wav"));
+        mWavObject = new WavObject(new File(AnEar.getRoot(mContext), "audio.wav"));
 
         mStartServiceButton.setOnClickListener(new View.OnClickListener() {
             @Override

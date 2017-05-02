@@ -140,7 +140,7 @@ public class DemoBandActivity extends AppCompatActivity {
         bandObject.enableHapticFeedback(true);
 
         // Get Destination Directory
-        File directory = AnEar.ROOT_FILE;
+        File directory = AnEar.getRoot(mContext);
 
         // Configure Storage Object
         StorageObject storageObject = new CsvObject(directory);

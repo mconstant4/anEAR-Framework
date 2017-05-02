@@ -41,7 +41,7 @@ public class BandSkinTemperatureListener implements BandSkinTemperatureEventList
             String[] contents = {dateString, timeString,
                     String.valueOf(bandSkinTemperatureEvent.getTemperature())};
             String content = CsvLogService.generateContents(contents);
-            CsvLogService.logData(mContext, new File(AnEar.ROOT_FILE, "skin_temperature.csv"), HEADER, content);
+            CsvLogService.logData(mContext, new File(AnEar.getRoot(mContext), "skin_temperature.csv"), HEADER, content);
         }
     }
 }

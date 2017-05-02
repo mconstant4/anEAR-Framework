@@ -44,7 +44,7 @@ public class BandGyroscopeListener implements BandGyroscopeEventListener {
                     String.valueOf(bandGyroscopeEvent.getAngularVelocityY()),
                     String.valueOf(bandGyroscopeEvent.getAngularVelocityZ())};
             String content = CsvLogService.generateContents(contents);
-            CsvLogService.logData(mContext, new File(AnEar.ROOT_FILE, "gyroscope.csv"), HEADER, content);
+            CsvLogService.logData(mContext, new File(AnEar.getRoot(mContext), "gyroscope.csv"), HEADER, content);
         }
     }
 }

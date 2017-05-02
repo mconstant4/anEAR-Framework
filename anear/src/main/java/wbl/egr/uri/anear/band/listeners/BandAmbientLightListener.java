@@ -41,7 +41,7 @@ public class BandAmbientLightListener implements BandAmbientLightEventListener {
             String[] contents = {dateString, timeString,
                     String.valueOf(bandAmbientLightEvent.getBrightness())};
             String content = CsvLogService.generateContents(contents);
-            CsvLogService.logData(mContext, new File(AnEar.ROOT_FILE, "ambient_light.csv"), HEADER, content);
+            CsvLogService.logData(mContext, new File(AnEar.getRoot(mContext), "ambient_light.csv"), HEADER, content);
         }
     }
 }

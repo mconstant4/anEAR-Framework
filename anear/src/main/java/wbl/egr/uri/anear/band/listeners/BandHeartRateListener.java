@@ -42,7 +42,7 @@ public class BandHeartRateListener implements BandHeartRateEventListener {
                     String.valueOf(bandHeartRateEvent.getHeartRate()),
                     String.valueOf(bandHeartRateEvent.getQuality())};
             String content = CsvLogService.generateContents(contents);
-            CsvLogService.logData(mContext, new File(AnEar.ROOT_FILE, "heart_rate.csv"), HEADER, content);
+            CsvLogService.logData(mContext, new File(AnEar.getRoot(mContext), "heart_rate.csv"), HEADER, content);
         }
     }
 }

@@ -56,7 +56,7 @@ public class BandAltimeterListener implements BandAltimeterEventListener {
                         String.valueOf(bandAltimeterEvent.getTotalGainToday()),
                         String.valueOf(bandAltimeterEvent.getTotalLoss())};
                 String content = CsvLogService.generateContents(contents);
-                CsvLogService.logData(mContext, new File(AnEar.ROOT_FILE, "altimeter.csv"), HEADER, content);
+                CsvLogService.logData(mContext, new File(AnEar.getRoot(mContext), "altimeter.csv"), HEADER, content);
             } catch (InvalidBandVersionException e) {
                 e.printStackTrace();
             }
