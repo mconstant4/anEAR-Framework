@@ -22,6 +22,7 @@ public class BandObject extends SensorObject implements Serializable {
     private boolean mAutoStream;
     private BandSensor[] mSensorsToRecord;
     private boolean mPeriodic;
+    private boolean mHapticFeedback;
 
     public BandObject(BandInfo bandInfo) {
         mBandName = bandInfo.getName();
@@ -30,6 +31,16 @@ public class BandObject extends SensorObject implements Serializable {
         mAutoStream = false;
         mSensorsToRecord = null;
         mPeriodic = false;
+        mHapticFeedback = false;
+    }
+
+    public BandObject(BandInfo bandInfo, boolean autoStream, BandSensor[] sensorsToRecord, boolean periodic, boolean hapticFeedback) {
+        mBandName = bandInfo.getName();
+        mBandAddress = bandInfo.getMacAddress();
+        mAutoStream = autoStream;
+        mSensorsToRecord = sensorsToRecord;
+        mPeriodic = periodic;
+        mHapticFeedback = hapticFeedback;
     }
 
     public String getBandName() {
@@ -44,7 +55,7 @@ public class BandObject extends SensorObject implements Serializable {
         return mAutoStream;
     }
 
-    public void setAutoStream(boolean autoStream) {
+    public void enableAutoStream(boolean autoStream) {
         mAutoStream = autoStream;
     }
 
@@ -60,7 +71,15 @@ public class BandObject extends SensorObject implements Serializable {
         return mPeriodic;
     }
 
-    public void setPeriodic(boolean periodic) {
+    public void enablePeriodic(boolean periodic) {
         mPeriodic = periodic;
+    }
+
+    public boolean isHapticFeedback() {
+        return mHapticFeedback;
+    }
+
+    public void enableHapticFeedback(boolean hapticFeedback) {
+        mHapticFeedback = hapticFeedback;
     }
 }

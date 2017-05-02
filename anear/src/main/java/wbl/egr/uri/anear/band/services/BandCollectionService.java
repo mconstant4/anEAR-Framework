@@ -1,8 +1,16 @@
 package wbl.egr.uri.anear.band.services;
 
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+
+import android.os.Build;
 import android.os.IBinder;
+import android.os.PowerManager;
+import android.os.SystemClock;
 import android.util.Log;
 
 import com.microsoft.band.BandClient;
@@ -14,6 +22,7 @@ import com.microsoft.band.BandInfo;
 import com.microsoft.band.BandResultCallback;
 import com.microsoft.band.ConnectionState;
 import com.microsoft.band.InvalidBandVersionException;
+import com.microsoft.band.notifications.VibrationType;
 import com.microsoft.band.sensors.BandSensorManager;
 import com.microsoft.band.sensors.GsrSampleRate;
 import com.microsoft.band.sensors.SampleRate;
@@ -35,6 +44,7 @@ import wbl.egr.uri.anear.band.listeners.BandPedometerListener;
 import wbl.egr.uri.anear.band.listeners.BandRrIntervalListener;
 import wbl.egr.uri.anear.band.listeners.BandSkinTemperatureListener;
 import wbl.egr.uri.anear.band.listeners.BandUvListener;
+import wbl.egr.uri.anear.band.receivers.BandAlarmReceiver;
 import wbl.egr.uri.anear.models.BandObject;
 import wbl.egr.uri.anear.models.StorageObject;
 import wbl.egr.uri.anear.band.receivers.BandContactReceiver;
@@ -49,6 +59,9 @@ public class BandCollectionService extends AnEarService {
     private static final String BAND_ACTION = "wbl.egr.uri.anear.band.action";
     private static final String BAND_INPUT = "wbl.egr.uri.anear.band.input";
     private static final String BAND_OUTPUT = "wbl.egr.uri.anear.band.output";
+
+    public static final String ACTION_SET_ALARM = "wbl.egr.uri.anear.band.alarm.set";
+    public static final String ACTION_CANCEL_ALARM = "wbl.egr.uri.anear.band.alarm.cancel";
 
     /**
      * This method is used to setup this service to connect to a specific BandObject (a Microsoft
@@ -97,6 +110,12 @@ public class BandCollectionService extends AnEarService {
         context.startService(intent);
     }
 
+    public static void toggle(Context context) {
+        Intent intent = new Intent(context, BandCollectionService.class);
+        intent.putExtra(BAND_ACTION, BandAction.TOGGLE);
+        context.startService(intent);
+    }
+
     /**
      * This method requests information from the connected BandObject. The returned info is in a
      * String array with the following format:<br/>
@@ -135,14 +154,34 @@ public class BandCollectionService extends AnEarService {
         public void onResult(ConnectionState connectionState, Throwable throwable) {
             if (connectionState == ConnectionState.CONNECTED) {
                 log("Connected to " + mBandObject.getBandName(), Log.INFO);
+                if (mBandObject.isHapticFeedback()) {
+                    try {
+                        mBandClient.getNotificationManager().vibrate(VibrationType.RAMP_UP);
+                    } catch (BandIOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 updateState(BandState.CONNECTED);
                 mBandClient.registerConnectionCallback(mBandConnectionCallback);
 
                 if (mBandObject.isAutoStream()) {
-                    startStream();
+                    if (mBandObject.isPeriodic()) {
+                        updateState(BandState.PAUSED);
+                        setAlarm();
+                        mWakeLock.acquire();
+                    } else {
+                        startStream();
+                    }
                 }
             } else {
                 log("Connect Failed (Could not Connect)", Log.ERROR);
+                if (mBandObject.isHapticFeedback()) {
+                    try {
+                        mBandClient.getNotificationManager().vibrate(VibrationType.THREE_TONE_HIGH);
+                    } catch (BandIOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 mBandState = BandState.INITIALIZED;
             }
         }
@@ -152,7 +191,7 @@ public class BandCollectionService extends AnEarService {
         @Override
         public void onResult(Void aVoid, Throwable throwable) {
             log("Disconnected from " + mBandObject.getBandName(), Log.INFO);
-            mBandState = BandState.DISCONNECTED;
+            updateState(BandState.DISCONNECTED);
             if (mDestroying) {
                 stopSelf();
             }
@@ -167,6 +206,13 @@ public class BandCollectionService extends AnEarService {
                     updateState(BandState.DISCONNECTED);
                     break;
                 case CONNECTED:
+                    if (mBandObject.isHapticFeedback()) {
+                        try {
+                            mBandClient.getNotificationManager().vibrate(VibrationType.RAMP_UP);
+                        } catch (BandIOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     updateState(BandState.CONNECTED);
                     if (mBandObject.isAutoStream()) {
                         startStream();
@@ -195,12 +241,15 @@ public class BandCollectionService extends AnEarService {
         }
     };
 
+    private final int NOTIFICATION_ID = 333;
+
     private Context mContext;
     private BandState mBandState;
     private BandObject mBandObject;
     private StorageObject mStorageObject;
     private BandClientManager mBandClientManager;
     private BandClient mBandClient;
+    private PowerManager.WakeLock mWakeLock;
     private boolean mDestroying;
 
     @Override
@@ -212,7 +261,17 @@ public class BandCollectionService extends AnEarService {
         mDestroying = false;
         updateState(BandState.UNINITIALIZED);
 
+        //Declare as Foreground Service
+        Notification notification = new Notification.Builder(this)
+                .setContentTitle("ED EAR Active")
+                .setContentText("EAR is Starting")
+                .setContentIntent(generateNotificationPendingIntent())
+                .setSmallIcon(android.R.drawable.ic_dialog_alert)
+                .build();
+        startForeground(NOTIFICATION_ID, notification);
+
         mBandClientManager = BandClientManager.getInstance();
+        mWakeLock = ((PowerManager) getSystemService(POWER_SERVICE) ).newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "BandCollectionServiceWakeLock");
 
         registerReceiver(mBandContactReceiver, BandContactReceiver.INTENT_FILTER);
     }
@@ -241,13 +300,25 @@ public class BandCollectionService extends AnEarService {
                 connect();
                 break;
             case START_STREAM:
-                startStream();
+                if (mBandObject != null && mBandObject.isPeriodic() && mBandState == BandState.CONNECTED) {
+                    updateState(BandState.PAUSED);
+                    setAlarm();
+                    mWakeLock.acquire();
+                } else {
+                    startStream();
+                }
                 break;
             case STOP_STREAM:
                 stopStream();
+                if (mWakeLock != null && mWakeLock.isHeld()) {
+                    mWakeLock.release();
+                }
                 break;
             case REQUEST_INFO:
                 requestInfo();
+                break;
+            case TOGGLE:
+                toggle();
                 break;
             case DISCONNECT:
                 disconnect();
@@ -453,17 +524,58 @@ public class BandCollectionService extends AnEarService {
 
     private void stopStream() {
         if (mBandState != BandState.STREAMING && mBandState != BandState.NOT_WORN &&
-                mBandState != BandState.PAUSED) {
+                mBandState != BandState.PAUSED && !mDestroying) {
             log("Cannot Call Stop Stream from Current State (" + mBandState.toString() + ")",
                     Log.WARN);
         } else {
+            if (mBandClient != null && mBandClient.isConnected()) {
+                try {
+                    cancelAlarm();
+                    mBandClient.getSensorManager().unregisterAllListeners();
+                    updateState(BandState.CONNECTED);
+                } catch (BandIOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void toggle() {
+        if (mBandState == BandState.STREAMING || mBandState == BandState.NOT_WORN) {
+            // Pause Sensor Recordings
             try {
                 mBandClient.getSensorManager().unregisterAllListeners();
-                updateState(BandState.CONNECTED);
+                updateState(BandState.PAUSED);
             } catch (BandIOException e) {
                 e.printStackTrace();
             }
+        } else if (mBandState == BandState.PAUSED) {
+            // Resume Sensor Recordings
+            startStream();
+        } else {
+            log("Cannot Call Toggle from Current State (" + mBandState.toString() + ")",
+                    Log.WARN);
         }
+
+        setAlarm();
+    }
+
+    private void setAlarm() {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + (3 * 60 * 1000),
+                    generatePendingIntent(ACTION_SET_ALARM));
+        } else {
+            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + (3 * 60 * 1000),
+                    generatePendingIntent(ACTION_SET_ALARM));
+        }
+    }
+
+    private void cancelAlarm() {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.cancel(generatePendingIntent(ACTION_SET_ALARM));
     }
 
     private void enterDynamicBlackout() {
@@ -522,6 +634,13 @@ public class BandCollectionService extends AnEarService {
     private void disconnect() {
         switch (mBandState) {
             case CONNECTED:
+                if (mBandObject.isHapticFeedback()) {
+                    try {
+                        mBandClient.getNotificationManager().vibrate(VibrationType.RAMP_DOWN);
+                    } catch (BandIOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 mBandClient.disconnect().registerResultCallback(mDisconnectBandResultCallback);
                 mBandClient.unregisterConnectionCallback();
                 updateState(BandState.DISCONNECTING);
@@ -530,24 +649,58 @@ public class BandCollectionService extends AnEarService {
             case PAUSED:
             case NOT_WORN:
                 stopStream();
+                if (mBandObject.isHapticFeedback()) {
+                    try {
+                        mBandClient.getNotificationManager().vibrate(VibrationType.RAMP_DOWN);
+                    } catch (BandIOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 mBandClient.disconnect().registerResultCallback(mDisconnectBandResultCallback);
                 mBandClient.unregisterConnectionCallback();
                 updateState(BandState.DISCONNECTING);
                 break;
             default:
-                log("Cannot Call Disconnect from Current State (" + mBandState.toString() + ")",
-                        Log.WARN);
+                if (mDestroying) {
+                    stopSelf();
+                } else {
+                    log("Cannot Call Disconnect from Current State (" + mBandState.toString() + ")",
+                            Log.WARN);
+                }
                 break;
         }
+    }
+
+    private PendingIntent generatePendingIntent(String action) {
+        Intent intent = new Intent(mContext, BandAlarmReceiver.class);
+        intent.putExtra(ACTION_SET_ALARM, action);
+        return PendingIntent.getBroadcast(mContext, 347, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
+    private PendingIntent generateNotificationPendingIntent() {
+        Intent intent = new Intent(mContext, BandCollectionService.class);
+        intent.putExtra(BAND_ACTION, BandAction.DESTROY);
+        return PendingIntent.getService(mContext, 474, intent, 0);
     }
 
     private void updateState(BandState bandState) {
         log("State: " + bandState.toString(), Log.DEBUG);
 
         mBandState = bandState;
+        updateNotification(bandState.toString());
 
         Intent intent = new Intent(BandStateReceiver.INTENT_FILTER.getAction(0));
         intent.putExtra(BandStateReceiver.EXTRA_STATE, bandState);
         sendBroadcast(intent);
+    }
+
+    private void updateNotification(String status) {
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        Notification.Builder notificationBuilder = new Notification.Builder(this)
+                .setContentTitle("EAR is Active")
+                .setContentIntent(generateNotificationPendingIntent())
+                .setSmallIcon(android.R.drawable.ic_dialog_alert)
+                .setContentText("Band Status: " + status);
+        notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
     }
 }

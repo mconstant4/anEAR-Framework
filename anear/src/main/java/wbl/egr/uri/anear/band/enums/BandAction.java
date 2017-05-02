@@ -11,7 +11,8 @@ public enum BandAction {
     STOP_STREAM("stop"),
     REQUEST_INFO("info"),
     DISCONNECT("dis"),
-    DESTROY("des");
+    DESTROY("des"),
+    TOGGLE("tog");
 
     private String mAction;
 

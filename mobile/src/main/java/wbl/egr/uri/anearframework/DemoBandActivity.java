@@ -9,8 +9,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.microsoft.band.BandInfo;
+
+import java.io.File;
 import java.lang.ref.WeakReference;
 
+import wbl.egr.uri.anear.AnEar;
 import wbl.egr.uri.anear.band.enums.BandSensor;
 import wbl.egr.uri.anear.band.enums.BandState;
 import wbl.egr.uri.anear.models.BandObject;
@@ -31,11 +35,32 @@ public class DemoBandActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             switch ((BandState) intent.getSerializableExtra(EXTRA_STATE)) {
+                case UNINITIALIZED:
+                    Log.d("Band Example", "Uninitialized");
+                    break;
                 case INITIALIZED:
                     Log.d("Band Example", "Initialized");
                     break;
+                case CONNECTING:
+                    Log.d("Band Example", "Connecting");
+                    break;
                 case CONNECTED:
                     Log.d("Band Example", "Connected");
+                    break;
+                case STREAMING:
+                    Log.d("Band Example", "Streaming");
+                    break;
+                case PAUSED:
+                    Log.d("Band Example", "Paused");
+                    break;
+                case NOT_WORN:
+                    Log.d("Band Example", "Not Worn");
+                    break;
+                case DISCONNECTING:
+                    Log.d("Band Example", "Disconnecting");
+                    break;
+                case DISCONNECTED:
+                    Log.d("Band Example", "Disconnected");
                     break;
             }
         }
@@ -45,9 +70,10 @@ public class DemoBandActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String[] info = intent.getStringArrayExtra(EXTRA_INFO);
             Log.d("Band Info Receiver", "Received Band Info:");
-            for (String s : info) {
-                Log.d("\tBand Info Receiver", s);
-            }
+            Log.d("Band Info Receiver", "Band Name :\t" + info[0]);
+            Log.d("Band Info Receiver", "Band Address:\t" + info[1]);
+            Log.d("Band Info Receiver", "HW Version:\t" + info[2]);
+            Log.d("Band Info Receiver", "FW Version:\t" + info[3]);
         }
     };
 
@@ -95,23 +121,29 @@ public class DemoBandActivity extends AppCompatActivity {
             }
         });
 
-        /*
-        Register Receivers
-                Band State Receiver: Receives the new state from Band Collection Service whenever
-                                        it is updated.
-                Band Info Receiver: Receives the Band's info whenever it is requested.
-         */
+        // Register Receivers
         registerReceiver(mBandStateReceiver, BandStateReceiver.INTENT_FILTER);
         registerReceiver(mBandInfoReceiver, BandInfoReceiver.INTENT_FILTER);
 
-        // Configure Band Object
+        // Get Desired Band
+        BandInfo[] pairedBands = BandObject.getPairedBands();
+        BandInfo band = pairedBands[0];
+
+        // Get Sensors to Record
         BandSensor[] sensors = {BandSensor.ACCELEROMETER, BandSensor.CONTACT, BandSensor.SKIN_TEMPERATURE};
-        BandObject bandObject = new BandObject(BandObject.getPairedBands()[0]);
+
+        // Configure Band Object
+        BandObject bandObject = new BandObject(band);
         bandObject.setSensorsToRecord(sensors);
-        bandObject.setAutoStream(true);
+        bandObject.enableAutoStream(true);
+        bandObject.enablePeriodic(false);
+        bandObject.enableHapticFeedback(true);
+
+        // Get Destination Directory
+        File directory = AnEar.ROOT_FILE;
 
         // Configure Storage Object
-        StorageObject storageObject = new CsvObject();
+        StorageObject storageObject = new CsvObject(directory);
 
         // Initialize Band Collection Service
         BandCollectionService.initialize(mContext, bandObject, storageObject);

@@ -11,7 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import wbl.egr.uri.anear.band.enums.AnEar;
+import wbl.egr.uri.anear.AnEar;
 import wbl.egr.uri.anear.models.CsvObject;
 import wbl.egr.uri.anear.models.StorageObject;
 import wbl.egr.uri.anear.io.services.CsvLogService;
