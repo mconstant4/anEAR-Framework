@@ -21,6 +21,7 @@ import wbl.egr.uri.anear.AnEar;
 import wbl.egr.uri.anear.audio.enums.AudioAction;
 import wbl.egr.uri.anear.audio.enums.AudioState;
 import wbl.egr.uri.anear.audio.receivers.AudioAlarmReceiver;
+import wbl.egr.uri.anear.audio.receivers.AudioStateReceiver;
 import wbl.egr.uri.anear.models.AudioObject;
 import wbl.egr.uri.anear.models.AudioStorageObject;
 
@@ -267,6 +268,11 @@ public class AudioRecorderService extends Service {
 
     private void updateState(AudioState audioState) {
         mAudioState = audioState;
+
+        // Send Broadcast
+        Intent intent = new Intent(AudioStateReceiver.INTENT_FILTER.getAction(0));
+        intent.putExtra(AudioStateReceiver.EXTRA_STATE, audioState);
+        sendBroadcast(intent);
     }
 
     private void log(String message, int type) {
