@@ -12,7 +12,7 @@
     <application android:allowBackup="true"
                  android:label="@string/app_name"
                  android:supportsRtl="true"
-                 android:name=".band.enums.AnEar">
+                 android:name=".AnEar">
 
         <service
             android:name=".band.services.BandCollectionService"

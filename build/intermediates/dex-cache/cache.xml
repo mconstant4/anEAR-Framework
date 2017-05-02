@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/bundles/default/libs/microsoft-band.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f6c3d837bd041b6a3b4945f84c6ae1419f7be5e8">
+        <dex dex="/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/mobile/build/intermediates/pre-dexed/debug/microsoft-band_94b56d648765c51cf3c341c84a93a8123dfd6d57.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="feb604e35085d073ecdb533c3067c846a3acf548">
+        <dex dex="/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/mobile/build/intermediates/pre-dexed/debug/classes_f06b13696f0d0966b0ea7685b03e7a286d733f24.jar" />
+    </item>
+
+</items>
