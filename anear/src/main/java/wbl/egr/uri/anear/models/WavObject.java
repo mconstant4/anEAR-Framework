@@ -16,12 +16,14 @@ public class WavObject extends AudioStorageObject {
         mDestination = destination;
 
         try {
-            if (!mDestination.exists()) {
-                mDestination.getParentFile().mkdirs();
-                mDestination.createNewFile();
-            } else {
-                mDestination.delete();
+            int count = 0;
+            mDestination.getParentFile().mkdirs();
+            while (mDestination.exists()) {
+                count++;
+                mDestination = new File(mDestination.getParentFile(),
+                        mDestination.getName() + "_" + count + ".wav");
             }
+            mDestination.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
