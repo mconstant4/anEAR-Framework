@@ -44,9 +44,33 @@ public class AnEar extends Application {
         }
     }
 
-    public static void setRoot(Context context, String filePath) {
+    public static void setRoot(Context context, String id) {
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
-        editor.putString(FILE_PREF, filePath);
+        // Do not change this! Works on targeted devices for WBL. Dynamically retrieving the
+        // SD Card path is tricky on Android since it is different depending on the physical device.
+        File root = new File("/storage/sdcard1");
+        if (!root.exists() || !root.canWrite()) {
+            // If no external SD Card mounted, use the Documents directory
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                root = new File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_DOCUMENTS);
+            } else {
+                root = new File(Environment.getExternalStorageDirectory(), "Documents");
+            }
+        }
+        // Save all files in the .anear root directory
+        File directory = new File(root, ".anear");
+        if (!directory.exists()) {
+            if (!directory.mkdirs()) {
+                // Error Creating Files, check your permissions
+            }
+        }
+        File file;
+        if (id != null && !id.equals("")) {
+            file = new File(directory, id);
+        } else {
+            file = directory;
+        }
+        editor.putString(FILE_PREF, file.getAbsolutePath());
         editor.apply();
     }
 }
