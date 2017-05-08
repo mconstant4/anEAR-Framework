@@ -3,6 +3,7 @@ package wbl.egr.uri.anear.models;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 
 /**
@@ -15,25 +16,28 @@ public class WavObject extends AudioStorageObject {
     public WavObject(File destination) {
         mDestination = destination;
 
-        try {
-            int count = 0;
-            mDestination.getParentFile().mkdirs();
-            while (mDestination.exists()) {
-                count++;
-                mDestination = new File(mDestination.getParentFile(),
-                        mDestination.getName() + "_" + count + ".wav");
-            }
-            mDestination.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        mDestination.getParentFile().mkdirs();
     }
 
     @Override
     public void processRawAudio(File file) {
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
-            FileOutputStream fileOutputStream = new FileOutputStream(mDestination);
+
+            File directory = mDestination.getParentFile();
+            FilenameFilter filter = new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    return name.endsWith(".wav");
+                }
+            };
+            int count = directory.list(filter).length;
+
+            String fileName = mDestination.getName()
+                    .substring(0, mDestination.getName().length() - 4) + "_" + count + ".wav";
+
+            File destination = new File(mDestination.getParentFile(), fileName);
+            FileOutputStream fileOutputStream = new FileOutputStream(destination);
 
             writeHeader(fileInputStream, fileOutputStream);
             byte[] audioData = new byte[2048];

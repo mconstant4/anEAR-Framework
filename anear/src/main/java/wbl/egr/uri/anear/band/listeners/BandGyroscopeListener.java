@@ -38,7 +38,7 @@ public class BandGyroscopeListener implements BandGyroscopeEventListener {
             // Store Info as CSV
             Date date = Calendar.getInstance().getTime();
             String dateString = new SimpleDateFormat("MM/dd/yyyy", Locale.US).format(date);
-            String timeString = new SimpleDateFormat("hh:mm:ss.SSS", Locale.US).format(date);
+            String timeString = new SimpleDateFormat("kk:mm:ss.SSS", Locale.US).format(date);
             String[] contents = {dateString, timeString,
                     String.valueOf(bandGyroscopeEvent.getAngularVelocityX()),
                     String.valueOf(bandGyroscopeEvent.getAngularVelocityY()),

@@ -45,7 +45,7 @@ public class BandAccelerometerListener implements BandAccelerometerEventListener
             // Store Info as CSV
             Date date = Calendar.getInstance().getTime();
             String dateString = new SimpleDateFormat("MM/dd/yyyy", Locale.US).format(date);
-            String timeString = new SimpleDateFormat("hh:mm:ss.SSS", Locale.US).format(date);
+            String timeString = new SimpleDateFormat("kk:mm:ss.SSS", Locale.US).format(date);
             String[] contents = {dateString, timeString,
                     String.valueOf(bandAccelerometerEvent.getAccelerationX() * (long)9.81),
                     String.valueOf(bandAccelerometerEvent.getAccelerationY() * (long)9.81),
