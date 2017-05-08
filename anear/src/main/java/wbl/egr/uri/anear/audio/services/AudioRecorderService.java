@@ -231,9 +231,13 @@ public class AudioRecorderService extends Service {
 
             @Override
             public void onFinish() {
-                // Toggle Recording
+                // Stop Recording
                 if (mAudioState == AudioState.RECORDING) {
                     stopRecording();
+                }
+
+                if (mAudioObject.isPeriodicEnabled()) {
+                    setAlarm();
                 }
             }
         }.start();

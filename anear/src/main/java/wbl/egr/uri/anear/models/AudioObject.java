@@ -75,6 +75,10 @@ public class AudioObject implements Serializable {
         return mBufferSize;
     }
 
+    /*
+    TODO:
+    Implement Notification option
+
     public boolean isNotificationEnabled() {
         return mNotification;
     }
@@ -82,6 +86,7 @@ public class AudioObject implements Serializable {
     public void enableNotification(boolean notification) {
         mNotification = notification;
     }
+     */
 
     public boolean isPeriodicEnabled() {
         return mPeriodic;
@@ -101,6 +106,10 @@ public class AudioObject implements Serializable {
         return mDelay;
     }
 
+    /*
+    TODO:
+    Implement Log Option
+
     public boolean isLogEnabled() {
         return mLog;
     }
@@ -108,4 +117,5 @@ public class AudioObject implements Serializable {
     public void enableLog(boolean log) {
         mLog = log;
     }
+     */
 }

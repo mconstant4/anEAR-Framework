@@ -130,7 +130,7 @@ public class DemoBandActivity extends AppCompatActivity {
         BandInfo band = pairedBands[0];
 
         // Get Sensors to Record
-        BandSensor[] sensors = {BandSensor.ACCELEROMETER, BandSensor.CONTACT, BandSensor.SKIN_TEMPERATURE};
+        BandSensor[] sensors = {BandSensor.GYROSCOPE, BandSensor.CONTACT, BandSensor.SKIN_TEMPERATURE};
 
         // Configure Band Object
         BandObject bandObject = new BandObject(band);
