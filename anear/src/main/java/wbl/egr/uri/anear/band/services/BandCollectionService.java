@@ -480,7 +480,7 @@ public class BandCollectionService extends AnEarService {
                                 break;
                             case HEART_RATE:
                                 BandHeartRateListener bandHeartRateListener =
-                                        new BandHeartRateListener(mContext, mStorageObject);
+                                        new BandHeartRateListener(mContext, mStorageObject, false);
                                 bandSensorManager.registerHeartRateEventListener(bandHeartRateListener);
                                 break;
                             case PEDOMETER:
