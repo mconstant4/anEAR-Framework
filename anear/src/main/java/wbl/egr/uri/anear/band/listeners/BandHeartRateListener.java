@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import wbl.egr.uri.anear.AnEar;
+import wbl.egr.uri.anear.audio.services.AudioRecorderService;
 import wbl.egr.uri.anear.models.CsvObject;
 import wbl.egr.uri.anear.models.StorageObject;
 import wbl.egr.uri.anear.io.services.CsvLogService;
@@ -25,14 +26,21 @@ public class BandHeartRateListener implements BandHeartRateEventListener {
 
     private Context mContext;
     private StorageObject mStorageObject;
+    private boolean mTrigger;
 
-    public BandHeartRateListener(Context context, StorageObject storageObject) {
+    public BandHeartRateListener(Context context, StorageObject storageObject, boolean trigger) {
         mContext = context;
         mStorageObject = storageObject;
+        mTrigger = trigger;
     }
 
     @Override
     public void onBandHeartRateChanged(BandHeartRateEvent bandHeartRateEvent) {
+        if (mTrigger && bandHeartRateEvent.getHeartRate() > 100) {
+            // Trigger Additional Audio Recording
+            AudioRecorderService.trigger(mContext);
+        }
+
         if (mStorageObject instanceof CsvObject) {
             // Store Info as CSV
             Date date = Calendar.getInstance().getTime();

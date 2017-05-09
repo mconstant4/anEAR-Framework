@@ -22,6 +22,7 @@ import wbl.egr.uri.anear.audio.enums.AudioAction;
 import wbl.egr.uri.anear.audio.enums.AudioState;
 import wbl.egr.uri.anear.audio.receivers.AudioAlarmReceiver;
 import wbl.egr.uri.anear.audio.receivers.AudioStateReceiver;
+import wbl.egr.uri.anear.models.AudioLogObject;
 import wbl.egr.uri.anear.models.AudioObject;
 import wbl.egr.uri.anear.models.AudioStorageObject;
 
@@ -48,6 +49,12 @@ public class AudioRecorderService extends Service {
         context.startService(intent);
     }
 
+    public static void trigger(Context context) {
+        Intent intent = new Intent(context, AudioRecorderService.class);
+        intent.putExtra(AUDIO_ACTION, AudioAction.TRIGGER);
+        context.startService(intent);
+    }
+
     public static void stop(Context context) {
         Intent intent = new Intent(context, AudioRecorderService.class);
         intent.putExtra(AUDIO_ACTION, AudioAction.STOP);
@@ -68,6 +75,8 @@ public class AudioRecorderService extends Service {
     private File mTempFile;
     private CountDownTimer mTimer;
     private PowerManager.WakeLock mWakeLock;
+    private boolean mTrigger;
+    private AudioLogObject mAudioLogObject;
 
     @Override
     public void onCreate() {
@@ -75,6 +84,7 @@ public class AudioRecorderService extends Service {
 
         mWakeLock = ((PowerManager) getSystemService(POWER_SERVICE) ).newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "AudioRecorderServiceWakeLock");
         mRecording = false;
+        mTrigger = false;
         updateState(AudioState.UNINITIALIZED);
         mTempFile = new File(AnEar.getRoot(this), "temp.tmp");
     }
@@ -98,6 +108,9 @@ public class AudioRecorderService extends Service {
                 break;
             case START:
                 startRecording();
+                break;
+            case TRIGGER:
+                trigger();
                 break;
             case STOP:
                 stopRecording();
@@ -156,12 +169,42 @@ public class AudioRecorderService extends Service {
             return;
         }
 
-        mAudioRecord.startRecording();
+        if (mAudioObject.isLogEnabled()) {
+            mAudioLogObject = new AudioLogObject(this, false);
+            mAudioRecord.startRecording();
+            // Begin the Audio Log File
+            mAudioLogObject.start();
+        } else {
+            mAudioRecord.startRecording();
+        }
         log("Recording Started", Log.INFO);
         startTimer(mAudioObject.getDuration());
         mRecording = true;
         updateState(AudioState.RECORDING);
         saveRawAudio();
+    }
+
+    private void trigger() {
+        if (mAudioState == AudioState.RECORDING) {
+            log("Cannot Trigger Recording, Recording already in progress", Log.WARN);
+        } else {
+            prepareAudioRecord();
+            if (mAudioRecord.getState() != AudioRecord.STATE_INITIALIZED) {
+                log("Audio Record not initialized properly", Log.WARN);
+                return;
+            }
+            if (mAudioObject.isLogEnabled()) {
+                mAudioLogObject = new AudioLogObject(this, true);
+                mAudioRecord.startRecording();
+                mAudioLogObject.start();
+            } else {
+                mAudioRecord.startRecording();
+            }
+            mRecording = true;
+            mTrigger = true;
+            updateState(AudioState.RECORDING);
+            saveRawAudio();
+        }
     }
 
     private void stopRecording() {
@@ -170,10 +213,14 @@ public class AudioRecorderService extends Service {
             mRecording = false;
             releaseAudioRecord();
             log("Recording Stopped", Log.INFO);
-            mStorageObject.processRawAudio(mTempFile);
+            if (mAudioObject.isLogEnabled()) {
+                mAudioLogObject.stop(mStorageObject.processRawAudio(mTempFile));
+            } else {
+                mStorageObject.processRawAudio(mTempFile);
+            }
             if (mAudioObject.isPeriodicEnabled()) {
                 updateState(AudioState.WAITING);
-                setAlarm();
+                // Set Alarm on timer finished
             } else {
                 updateState(AudioState.INITIALIZED);
             }
@@ -236,7 +283,9 @@ public class AudioRecorderService extends Service {
                     stopRecording();
                 }
 
-                if (mAudioObject.isPeriodicEnabled()) {
+                if (mTrigger) {
+                    mTrigger = false;
+                } else if (mAudioObject.isPeriodicEnabled()) {
                     setAlarm();
                 }
             }

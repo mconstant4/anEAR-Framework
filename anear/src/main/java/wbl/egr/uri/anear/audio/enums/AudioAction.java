@@ -7,6 +7,7 @@ package wbl.egr.uri.anear.audio.enums;
 public enum AudioAction {
     INITIALIZE,
     START,
+    TRIGGER,
     STOP,
     DESTROY
 }

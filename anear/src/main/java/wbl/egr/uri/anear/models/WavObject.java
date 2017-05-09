@@ -5,6 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by root on 5/1/17.
@@ -12,31 +16,50 @@ import java.io.IOException;
 
 public class WavObject extends AudioStorageObject {
     private File mDestination;
+    private boolean mApplyTimeStamp;
+    private String mTimeFormat;
 
     public WavObject(File destination) {
         mDestination = destination;
+
+        // Defaults
+        mApplyTimeStamp = false;
+        mTimeFormat = null;
+
+        mDestination.getParentFile().mkdirs();
+    }
+
+    public WavObject(File destination, String timeFormat) {
+        mDestination = destination;
+        mApplyTimeStamp = true;
+        mTimeFormat = timeFormat;
 
         mDestination.getParentFile().mkdirs();
     }
 
     @Override
-    public void processRawAudio(File file) {
+    public File processRawAudio(File file) {
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
 
             File directory = mDestination.getParentFile();
-            FilenameFilter filter = new FilenameFilter() {
-                @Override
-                public boolean accept(File dir, String name) {
-                    return name.endsWith(".wav");
-                }
-            };
-            int count = directory.list(filter).length;
+            File destination;
+            if (mApplyTimeStamp) {
+                Date date = Calendar.getInstance().getTime();
+                String timeStamp = new SimpleDateFormat(mTimeFormat, Locale.US).format(date);
+                FilenameFilter filter = new FilenameFilter() {
+                    @Override
+                    public boolean accept(File dir, String name) {
+                        return name.endsWith(".wav");
+                    }
+                };
+                int count = directory.list(filter).length;
+                String fileName = timeStamp + "_" + count + ".wav";
+                destination = new File(mDestination.getParentFile(), fileName);
+            } else {
+                destination = mDestination;
+            }
 
-            String fileName = mDestination.getName()
-                    .substring(0, mDestination.getName().length() - 4) + "_" + count + ".wav";
-
-            File destination = new File(mDestination.getParentFile(), fileName);
             FileOutputStream fileOutputStream = new FileOutputStream(destination);
 
             writeHeader(fileInputStream, fileOutputStream);
@@ -49,8 +72,11 @@ public class WavObject extends AudioStorageObject {
             fileInputStream.close();
 
             file.delete();
+
+            return destination;
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
     }
 

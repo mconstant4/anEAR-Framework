@@ -106,10 +106,6 @@ public class AudioObject implements Serializable {
         return mDelay;
     }
 
-    /*
-    TODO:
-    Implement Log Option
-
     public boolean isLogEnabled() {
         return mLog;
     }
@@ -117,5 +113,4 @@ public class AudioObject implements Serializable {
     public void enableLog(boolean log) {
         mLog = log;
     }
-     */
 }

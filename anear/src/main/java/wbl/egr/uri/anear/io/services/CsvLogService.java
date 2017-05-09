@@ -11,6 +11,7 @@ import android.util.Log;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 
 /**
  * Created by root on 4/26/17.
@@ -85,6 +86,16 @@ public class CsvLogService extends IntentService {
             fileOutputStream.write("\n".getBytes());
             fileOutputStream.flush();
             fileOutputStream.close();
+
+            // This code ensures that the Last Modified field of the file is updated.
+            // This is important because the Last Modified field can be used as a test by separate applications to see if the framework is running properly.
+            // There is a permissions bug in Android that results in the Last Modified field to not update automatically as it should
+            // This code is from https://issuetracker.google.com/issues/36930892
+            RandomAccessFile raf = new RandomAccessFile(file, "rw");
+            long length = raf.length();
+            raf.setLength(length + 1);
+            raf.setLength(length);
+            raf.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

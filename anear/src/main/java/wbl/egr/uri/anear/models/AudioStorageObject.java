@@ -12,5 +12,5 @@ import java.io.IOException;
  */
 
 public abstract class AudioStorageObject extends StorageObject {
-    public abstract void processRawAudio(File file);
+    public abstract File processRawAudio(File file);
 }
