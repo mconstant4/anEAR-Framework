@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/src/main/shaders"/></dataSet><dataSet config="release"><source path="/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/src/release/shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/home/mconstant/Documents/wbl/anEAR_framework/app/anear/src/main/shaders"/></dataSet><dataSet config="release"><source path="/home/mconstant/Documents/wbl/anEAR_framework/app/anear/src/release/shaders"/></dataSet></merger>

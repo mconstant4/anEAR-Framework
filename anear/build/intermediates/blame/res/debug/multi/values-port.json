@@ -1,5 +1,29 @@
 [
     {
+        "outputFile": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/incremental/mergeDebugResources/merged.dir/values-port/values-port.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 55,
+                    "endOffset": 106
+                },
+                "from": {
+                    "file": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/values-port/values-port.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 55,
+                        "endOffset": 106
+                    }
+                }
+            }
+        ]
+    },
+    {
         "outputFile": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/incremental/mergeDebugResources/merged.dir/values-port/values-port.xml",
         "map": [
             {

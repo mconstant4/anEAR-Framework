@@ -1,15 +1,11 @@
 [
     {
-        "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_tint_switch_thumb.xml",
-        "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_tint_switch_thumb.xml"
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/abc_search_url_text.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/abc_search_url_text.xml"
     },
     {
-        "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_tint_default.xml",
-        "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_tint_default.xml"
-    },
-    {
-        "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_secondary_text_material_light.xml",
-        "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_secondary_text_material_light.xml"
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/abc_tint_seek_thumb.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/abc_tint_seek_thumb.xml"
     },
     {
         "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_tint_edittext.xml",
@@ -20,16 +16,28 @@
         "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_tint_seek_thumb.xml"
     },
     {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/abc_tint_spinner.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/abc_tint_spinner.xml"
+    },
+    {
         "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_hint_foreground_material_dark.xml",
         "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_hint_foreground_material_dark.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/abc_primary_text_disable_only_material_light.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/abc_primary_text_disable_only_material_light.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/abc_secondary_text_material_light.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/abc_secondary_text_material_light.xml"
     },
     {
         "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_hint_foreground_material_light.xml",
         "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_hint_foreground_material_light.xml"
     },
     {
-        "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_tint_btn_checkable.xml",
-        "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_tint_btn_checkable.xml"
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/abc_tint_default.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/abc_tint_default.xml"
     },
     {
         "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_tint_spinner.xml",
@@ -40,8 +48,12 @@
         "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_btn_colored_borderless_text_material.xml"
     },
     {
-        "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_secondary_text_material_dark.xml",
-        "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_secondary_text_material_dark.xml"
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/abc_tint_btn_checkable.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/abc_hint_foreground_material_light.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/abc_hint_foreground_material_light.xml"
     },
     {
         "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_search_url_text.xml",
@@ -64,19 +76,87 @@
         "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_primary_text_disable_only_material_light.xml"
     },
     {
-        "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_primary_text_material_dark.xml",
-        "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_primary_text_material_dark.xml"
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/switch_thumb_material_light.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/switch_thumb_material_light.xml"
     },
     {
         "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/switch_thumb_material_light.xml",
         "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/switch_thumb_material_light.xml"
     },
     {
-        "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_btn_colored_text_material.xml",
-        "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_btn_colored_text_material.xml"
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/abc_tint_switch_thumb.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/abc_tint_switch_thumb.xml"
     },
     {
         "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_primary_text_disable_only_material_dark.xml",
         "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_primary_text_disable_only_material_dark.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_tint_switch_thumb.xml",
+        "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_tint_switch_thumb.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/abc_primary_text_disable_only_material_dark.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/abc_primary_text_disable_only_material_dark.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_tint_default.xml",
+        "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_tint_default.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_secondary_text_material_light.xml",
+        "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_secondary_text_material_light.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/abc_primary_text_material_light.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/abc_primary_text_material_light.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_tint_btn_checkable.xml",
+        "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/abc_hint_foreground_material_dark.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/abc_hint_foreground_material_dark.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/abc_primary_text_material_dark.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/switch_thumb_material_dark.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/switch_thumb_material_dark.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/abc_tint_edittext.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/abc_secondary_text_material_dark.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_secondary_text_material_dark.xml",
+        "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/abc_btn_colored_borderless_text_material.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_primary_text_material_dark.xml",
+        "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color/abc_btn_colored_text_material.xml",
+        "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color/abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/abc_btn_colored_text_material.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color/abc_tint_switch_track.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color/abc_tint_switch_track.xml"
     }
 ]

@@ -4,7 +4,15 @@
         "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
     },
     {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
         "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/androidTest/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
         "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/androidTest/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
     }
 ]

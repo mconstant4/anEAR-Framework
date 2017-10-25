@@ -8,16 +8,48 @@
         "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/anim/abc_slide_out_bottom.xml"
     },
     {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/anim/abc_slide_out_bottom.xml"
+    },
+    {
         "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/debug/anim/abc_popup_enter.xml",
         "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/anim/abc_popup_enter.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/debug/anim/abc_fade_in.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/anim/abc_fade_in.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/debug/anim/abc_slide_out_top.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/anim/abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
     },
     {
         "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
         "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/anim/abc_fade_out.xml"
     },
     {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/debug/anim/abc_popup_exit.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/anim/abc_popup_exit.xml"
+    },
+    {
         "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/debug/anim/abc_popup_exit.xml",
         "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/anim/abc_popup_exit.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/anim/abc_fade_out.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/debug/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/anim/abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/debug/anim/abc_popup_enter.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/anim/abc_popup_enter.xml"
     },
     {
         "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/debug/anim/abc_grow_fade_in_from_bottom.xml",
@@ -26,6 +58,14 @@
     {
         "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/debug/anim/abc_slide_out_top.xml",
         "source": "/root/.android/build-cache/1652381b0408cb857659433c6b1d6c49c528a262/output/res/anim/abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/debug/anim/abc_slide_in_bottom.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/anim/abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "/home/mconstant/Documents/wbl/anEAR_framework/app/anear/build/intermediates/res/merged/debug/anim/abc_slide_in_top.xml",
+        "source": "/home/mconstant/.android/build-cache/d3979db2c3aef86bd252e335adb1adc21f2e15d3/output/res/anim/abc_slide_in_top.xml"
     },
     {
         "merged": "/home/mconstant/Documents/WBL/anEAR_Framework/app/AnEAR_Framework/anear/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
